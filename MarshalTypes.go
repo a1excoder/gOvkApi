@@ -23,3 +23,7 @@ func unmarshalAny[T any](bytes []byte) (*T, error) {
 	}
 	return out, nil
 }
+
+func unmarshalError(data []byte) (*ErrorReturned, error) {
+	return unmarshalAny[ErrorReturned](data)
+}
