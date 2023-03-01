@@ -1,5 +1,10 @@
 package gOvkApi
 
+type AuthData struct {
+	Instance string
+	Token    *SuccessToken
+}
+
 type SuccessToken struct {
 	AccessToken string `json:"access_token"`
 	ExpiresIn   int    `json:"expires_in"`
