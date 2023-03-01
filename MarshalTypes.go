@@ -27,3 +27,7 @@ func unmarshalAny[T any](bytes []byte) (*T, error) {
 func unmarshalError(data []byte) (*ErrorReturned, error) {
 	return unmarshalAny[ErrorReturned](data)
 }
+
+func unmarshalSuccessToken(data []byte) (*SuccessToken, error) {
+	return unmarshalAny[SuccessToken](data)
+}
