@@ -45,13 +45,13 @@ func (data *AuthData) getApiToken(username, password string) (*ErrorReturned, er
 		return nil, err
 	}
 
-	stat, err := isError(body)
+	ovkErr, isErr, err := isError(body)
 	if err != nil {
 		return nil, err
 	}
 
-	if stat {
-		return unmarshalError(body)
+	if isErr {
+		return ovkErr, nil
 	}
 
 	data.Token, err = unmarshalSuccessToken(body)
