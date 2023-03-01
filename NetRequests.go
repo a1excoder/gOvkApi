@@ -1,6 +1,7 @@
 package gOvkApi
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 )
@@ -35,4 +36,28 @@ func makeRequest(url string, method int) ([]byte, int, error) {
 	}
 
 	return bodyData, response.StatusCode, nil
+}
+
+func (data *AuthData) getApiToken(username, password string) (*ErrorReturned, error) {
+	body, _, err := makeRequest(fmt.Sprintf("%s/token?username=%s&password=%s&grant_type=password",
+		data.Instance, username, password), MethodGet)
+	if err != nil {
+		return nil, err
+	}
+
+	stat, err := isError(body)
+	if err != nil {
+		return nil, err
+	}
+
+	if stat {
+		return unmarshalError(body)
+	}
+
+	data.Token, err = unmarshalSuccessToken(body)
+	if err != nil {
+		return nil, err
+	}
+
+	return nil, nil
 }
