@@ -36,3 +36,10 @@ func unmarshalError(data []byte) (*ErrorReturned, error) {
 func unmarshalSuccessToken(data []byte) (*SuccessToken, error) {
 	return unmarshalAny[SuccessToken](data)
 }
+
+func getAuthData(instance string) *AuthData {
+	authPtr := new(AuthData)
+	authPtr.Instance = instance
+
+	return authPtr
+}
