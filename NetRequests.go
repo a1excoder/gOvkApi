@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 )
 
 const (
@@ -11,19 +12,20 @@ const (
 	MethodGet  = 2
 )
 
-func makeRequest(url string, method int) ([]byte, int, error) {
+func makeRequest(url string, params url.Values, method int) ([]byte, int, error) {
 	var response *http.Response
 	var err error
 
 	switch method {
 	case MethodPost:
-		response, err = http.Post(url, "multipart/form-data", nil)
+		//response, err = http.Post(url, "multipart/form-data", nil)
+		response, err = http.PostForm(url, params)
 		break
 	case MethodGet:
-		response, err = http.Get(url)
+		response, err = http.Get(url + params.Encode())
 		break
 	default:
-		response, err = http.Post(url, "multipart/form-data", nil)
+		response, err = http.PostForm(url, params)
 	}
 
 	if err != nil {
