@@ -20,7 +20,7 @@ func makeRequest(url string, params url.Values, method int) ([]byte, int, error)
 		response, err = http.PostForm(url, params)
 		break
 	case MethodGet:
-		response, err = http.Get(url + params.Encode())
+		response, err = http.Get(url + "?" + params.Encode())
 		break
 	default:
 		response, err = http.PostForm(url, params)
