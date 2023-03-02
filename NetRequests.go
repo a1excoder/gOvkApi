@@ -1,7 +1,6 @@
 package gOvkApi
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -18,7 +17,6 @@ func makeRequest(url string, params url.Values, method int) ([]byte, int, error)
 
 	switch method {
 	case MethodPost:
-		//response, err = http.Post(url, "multipart/form-data", nil)
 		response, err = http.PostForm(url, params)
 		break
 	case MethodGet:
@@ -41,8 +39,12 @@ func makeRequest(url string, params url.Values, method int) ([]byte, int, error)
 }
 
 func (data *AuthData) getApiToken(username, password string) (*ErrorReturned, error) {
-	body, _, err := makeRequest(fmt.Sprintf("%s/token?username=%s&password=%s&grant_type=password",
-		data.Instance, username, password), MethodGet)
+	params := url.Values{}
+	params.Add("username", username)
+	params.Add("password", password)
+	params.Add("grant_type", "password")
+
+	body, _, err := makeRequest(data.Instance, params, MethodGet)
 	if err != nil {
 		return nil, err
 	}
