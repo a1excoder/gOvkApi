@@ -74,3 +74,7 @@ type GetFriends struct {
 		} `json:"items"`
 	} `json:"response"`
 }
+
+type ResponseFriends struct {
+	Response int `json:"response"`
+}
