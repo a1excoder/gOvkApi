@@ -21,3 +21,18 @@ type ErrorReturned struct {
 //	Key   string `json:"key"`
 //	Value T      `json:"value"`
 //}
+
+type ProfileInfo struct {
+	Response struct {
+		FirstName              string `json:"first_name"`
+		Id                     int    `json:"id"`
+		LastName               string `json:"last_name"`
+		HomeTown               string `json:"home_town"`
+		Status                 string `json:"status"`
+		BirthdayDate           string `json:"bdate"`
+		BirthdayDateVisibility int    `json:"bdate_visibility"`
+		Phone                  string `json:"phone"`
+		Relation               int    `json:"relation"`
+		Sex                    int    `json:"sex"`
+	} `json:"response"`
+}
