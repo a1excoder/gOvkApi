@@ -93,3 +93,10 @@ type GetRequests struct {
 		} `json:"items"`
 	} `json:"response"`
 }
+
+type AreFriends struct {
+	Response []struct {
+		FriendStatus int `json:"friend_status"`
+		UserId       int `json:"user_id"`
+	} `json:"response"`
+}
