@@ -78,3 +78,18 @@ type GetFriends struct {
 type ResponseFriends struct {
 	Response int `json:"response"`
 }
+
+type GetRequests struct {
+	Response struct {
+		Count int `json:"count"`
+		Items []struct {
+			Id              int    `json:"id"`
+			FirstName       string `json:"first_name"`
+			LastName        string `json:"last_name"`
+			IsClosed        bool   `json:"is_closed"`
+			CanAccessClosed bool   `json:"can_access_closed"`
+			Online          int    `json:"online"`
+			UserId          int    `json:"user_id"`
+		} `json:"items"`
+	} `json:"response"`
+}
