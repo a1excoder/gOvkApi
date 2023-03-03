@@ -36,3 +36,19 @@ type ProfileInfo struct {
 		Sex                    int    `json:"sex"`
 	} `json:"response"`
 }
+
+type Info struct {
+	Response struct {
+		FaRequired                int    `json:"2fa_required"`
+		Country                   string `json:"country"`
+		EuUser                    bool   `json:"eu_user"`
+		HttpsRequired             int    `json:"https_required"`
+		Intro                     int    `json:"intro"`
+		CommunityComments         bool   `json:"community_comments"`
+		IsLiveStreamingEnabled    bool   `json:"is_live_streaming_enabled"`
+		IsNewLiveStreamingEnabled bool   `json:"is_new_live_streaming_enabled"`
+		Lang                      int    `json:"lang"`
+		NoWallReplies             int    `json:"no_wall_replies"`
+		OwnPostsDefault           int    `json:"own_posts_default"`
+	} `json:"response"`
+}
