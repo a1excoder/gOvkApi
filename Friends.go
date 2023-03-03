@@ -26,12 +26,12 @@ func (authData *AuthData) getFriends(userId, count, offset int) (*GetFriends, *E
 		return nil, ovkErr, nil
 	}
 
-	profileInfo, err := unmarshalAny[GetFriends](body)
+	getFriends, err := unmarshalAny[GetFriends](body)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	return profileInfo, nil, nil
+	return getFriends, nil, nil
 }
 
 func (authData *AuthData) addFriend(userId int) (*ResponseFriends, *ErrorReturned, error) {
