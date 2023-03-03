@@ -12,12 +12,12 @@ type SuccessToken struct {
 }
 
 type ErrorReturned struct {
-	ErrorCode     int                  `json:"error_code"`
-	ErrorMsg      string               `json:"error_msg"`
-	RequestParams []RequestParams[any] `json:"request_params"`
+	ErrorCode int    `json:"error_code"`
+	ErrorMsg  string `json:"error_msg"`
+	//	RequestParams []RequestParams[any] `json:"request_params"`
 }
 
-type RequestParams[T any] struct {
-	Key   string `json:"key"`
-	Value T      `json:"value"`
-}
+//type RequestParams[T any] struct {
+//	Key   string `json:"key"`
+//	Value T      `json:"value"`
+//}
