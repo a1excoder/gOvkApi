@@ -87,3 +87,32 @@ func (authData *AuthData) deleteFriend(userId int) (*ResponseFriends, *ErrorRetu
 
 	return respFriends, nil, nil
 }
+
+func (authData *AuthData) getRequests(extended, count, offset int) (*GetRequests, *ErrorReturned, error) {
+	params := url.Values{}
+	params.Add("access_token", authData.Token.AccessToken)
+	params.Add("extended", strconv.Itoa(extended))
+	params.Add("count", strconv.Itoa(count))
+	params.Add("offset", strconv.Itoa(offset))
+
+	body, _, err := makeRequest(authData.Instance+"/method/Friends.getRequests", params, MethodGet)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	ovkErr, isErr, err := isError(body)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	if isErr {
+		return nil, ovkErr, nil
+	}
+
+	getReqFriends, err := unmarshalAny[GetRequests](body)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return getReqFriends, nil, nil
+}
