@@ -52,3 +52,11 @@ type Info struct {
 		OwnPostsDefault           int    `json:"own_posts_default"`
 	} `json:"response"`
 }
+
+type Counters struct {
+	Response struct {
+		Friends       int `json:"friends"`
+		Notifications int `json:"notifications"`
+		Messages      int `json:"messages"`
+	} `json:"response"`
+}
