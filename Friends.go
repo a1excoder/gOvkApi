@@ -116,3 +116,30 @@ func (authData *AuthData) getRequests(extended, count, offset int) (*GetRequests
 
 	return getReqFriends, nil, nil
 }
+
+func (authData *AuthData) areFriends(userIds string) (*AreFriends, *ErrorReturned, error) {
+	params := url.Values{}
+	params.Add("access_token", authData.Token.AccessToken)
+	params.Add("user_ids", userIds)
+
+	body, _, err := makeRequest(authData.Instance+"/method/Friends.areFriends", params, MethodGet)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	ovkErr, isErr, err := isError(body)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	if isErr {
+		return nil, ovkErr, nil
+	}
+
+	areFriendsReq, err := unmarshalAny[AreFriends](body)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return areFriendsReq, nil, nil
+}
