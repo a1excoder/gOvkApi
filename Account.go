@@ -32,7 +32,7 @@ func (authData *AuthData) getInfo() (*Info, *ErrorReturned, error) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 
-	body, _, err := makeRequest(authData.Instance+"/method/Account.getProfileInfo", params, MethodGet)
+	body, _, err := makeRequest(authData.Instance+"/method/Account.getInfo", params, MethodGet)
 	if err != nil {
 		return nil, nil, err
 	}
