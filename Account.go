@@ -27,3 +27,29 @@ func (authData *AuthData) getProfileInfo() (*ProfileInfo, *ErrorReturned, error)
 
 	return profileInfo, nil, nil
 }
+
+func (authData *AuthData) getInfo() (*Info, *ErrorReturned, error) {
+	params := url.Values{}
+	params.Add("access_token", authData.Token.AccessToken)
+
+	body, _, err := makeRequest(authData.Instance+"/method/Account.getProfileInfo", params, MethodGet)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	ovkErr, isErr, err := isError(body)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	if isErr {
+		return nil, ovkErr, nil
+	}
+
+	info, err := unmarshalAny[Info](body)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return info, nil, nil
+}
