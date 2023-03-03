@@ -32,8 +32,5 @@ func unmarshalSuccessToken(data []byte) (*SuccessToken, error) {
 }
 
 func getAuthData(instance string) *AuthData {
-	authPtr := new(AuthData)
-	authPtr.Instance = instance
-
-	return authPtr
+	return &AuthData{Instance: instance}
 }
