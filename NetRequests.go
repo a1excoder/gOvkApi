@@ -48,7 +48,7 @@ func (data *AuthData) getApiToken(username, password, twoFactorCode string, code
 		params.Add("code", twoFactorCode)
 	}
 
-	body, _, err := makeRequest(data.Instance, params, MethodPost)
+	body, _, err := makeRequest(data.Instance+"/token", params, MethodPost)
 	if err != nil {
 		return nil, err
 	}
