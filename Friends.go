@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func (authData *AuthData) getFriends(userId, count, offset int) (*GetFriends, *ErrorReturned, error) {
+func (authData *AuthData) GetFriends(userId, count, offset int) (*GetFriends, *ErrorReturned, error) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 	params.Add("user_id", strconv.Itoa(userId))
@@ -34,7 +34,7 @@ func (authData *AuthData) getFriends(userId, count, offset int) (*GetFriends, *E
 	return getFriends, nil, nil
 }
 
-func (authData *AuthData) addFriend(userId int) (*ResponseFriends, *ErrorReturned, error) {
+func (authData *AuthData) AddFriend(userId int) (*ResponseFriends, *ErrorReturned, error) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 	params.Add("user_id", strconv.Itoa(userId))
@@ -61,7 +61,7 @@ func (authData *AuthData) addFriend(userId int) (*ResponseFriends, *ErrorReturne
 	return respFriends, nil, nil
 }
 
-func (authData *AuthData) deleteFriend(userId int) (*ResponseFriends, *ErrorReturned, error) {
+func (authData *AuthData) DeleteFriend(userId int) (*ResponseFriends, *ErrorReturned, error) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 	params.Add("user_id", strconv.Itoa(userId))
@@ -88,7 +88,7 @@ func (authData *AuthData) deleteFriend(userId int) (*ResponseFriends, *ErrorRetu
 	return respFriends, nil, nil
 }
 
-func (authData *AuthData) getRequests(extended, count, offset int) (*GetRequests, *ErrorReturned, error) {
+func (authData *AuthData) GetRequests(extended, count, offset int) (*GetRequests, *ErrorReturned, error) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 	params.Add("extended", strconv.Itoa(extended))
@@ -117,7 +117,7 @@ func (authData *AuthData) getRequests(extended, count, offset int) (*GetRequests
 	return getReqFriends, nil, nil
 }
 
-func (authData *AuthData) areFriends(userIds string) (*AreFriends, *ErrorReturned, error) {
+func (authData *AuthData) AreFriends(userIds string) (*AreFriends, *ErrorReturned, error) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 	params.Add("user_ids", userIds)

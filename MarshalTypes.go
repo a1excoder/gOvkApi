@@ -31,6 +31,6 @@ func unmarshalSuccessToken(data []byte) (*SuccessToken, error) {
 	return unmarshalAny[SuccessToken](data)
 }
 
-func getAuthData(instance string) *AuthData {
+func GetAuthData(instance string) *AuthData {
 	return &AuthData{Instance: instance}
 }

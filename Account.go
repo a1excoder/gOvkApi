@@ -2,7 +2,7 @@ package gOvkApi
 
 import "net/url"
 
-func (authData *AuthData) getProfileInfo() (*ProfileInfo, *ErrorReturned, error) {
+func (authData *AuthData) GetProfileInfo() (*ProfileInfo, *ErrorReturned, error) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 
@@ -28,7 +28,7 @@ func (authData *AuthData) getProfileInfo() (*ProfileInfo, *ErrorReturned, error)
 	return profileInfo, nil, nil
 }
 
-func (authData *AuthData) getInfo() (*Info, *ErrorReturned, error) {
+func (authData *AuthData) GetInfo() (*Info, *ErrorReturned, error) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 
@@ -54,7 +54,7 @@ func (authData *AuthData) getInfo() (*Info, *ErrorReturned, error) {
 	return info, nil, nil
 }
 
-func (authData *AuthData) getCounters() (*Counters, *ErrorReturned, error) {
+func (authData *AuthData) GetCounters() (*Counters, *ErrorReturned, error) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 

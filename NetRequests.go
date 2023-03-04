@@ -38,7 +38,7 @@ func makeRequest(url string, params url.Values, method int) ([]byte, int, error)
 	return bodyData, response.StatusCode, nil
 }
 
-func (authData *AuthData) getApiToken(username, password, twoFactorCode string, code bool) (*ErrorReturned, error) {
+func (authData *AuthData) GetApiToken(username, password, twoFactorCode string, code bool) (*ErrorReturned, error) {
 	params := url.Values{}
 	params.Add("username", username)
 	params.Add("password", password)
