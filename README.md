@@ -42,6 +42,6 @@ func main() {
 	fmt.Println(profile.Response.FirstName, profile.Response.LastName, profile.Response.BirthdayDate)
 }
 
-# output
-# Oleksandr Rudenko 11.11.2004
+// output
+// Oleksandr Rudenko 11.11.2004
 ```
