@@ -1,3 +1,3 @@
-module github.com/a1excoder/gOvkApi/v1.0
+module github.com/a1excoder/gOvkApi
 
 go 1.19
