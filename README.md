@@ -39,7 +39,7 @@ func main() {
 		log.Fatalln(errOvk.ErrorMsg)
 	}
 	
-	fmt.Println(profile.Response.FirstName, profile.Response.LastName, profile.Response.BirthdayDate)
+	fmt.Println(profile.FirstName, profile.LastName, profile.BirthdayDate)
 }
 
 // output
