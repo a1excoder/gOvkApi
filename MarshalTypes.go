@@ -2,17 +2,17 @@ package gOvkApi
 
 import "encoding/json"
 
-func isError(data []byte) (*ErrorReturned, bool, error) {
+func isError(data []byte) (*ErrorReturned, error) {
 	errPtr, err := unmarshalError(data)
 	if err != nil {
-		return nil, false, err
+		return nil, err
 	}
 
 	if errPtr.ErrorMsg != "" {
-		return errPtr, true, nil
+		return errPtr, nil
 	}
 
-	return nil, false, nil
+	return nil, nil
 }
 
 func unmarshalAny[T any](bytes []byte) (*T, error) {

@@ -17,12 +17,12 @@ func (authData *AuthData) GetFriends(userId, count, offset int) (*GetFriends, *E
 		return nil, nil, err
 	}
 
-	ovkErr, isErr, err := isError(body)
+	ovkErr, err := isError(body)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	if isErr {
+	if ovkErr != nil {
 		return nil, ovkErr, nil
 	}
 
@@ -44,12 +44,12 @@ func (authData *AuthData) AddFriend(userId int) (*ResponseFriends, *ErrorReturne
 		return nil, nil, err
 	}
 
-	ovkErr, isErr, err := isError(body)
+	ovkErr, err := isError(body)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	if isErr {
+	if ovkErr != nil {
 		return nil, ovkErr, nil
 	}
 
@@ -71,12 +71,12 @@ func (authData *AuthData) DeleteFriend(userId int) (*ResponseFriends, *ErrorRetu
 		return nil, nil, err
 	}
 
-	ovkErr, isErr, err := isError(body)
+	ovkErr, err := isError(body)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	if isErr {
+	if ovkErr != nil {
 		return nil, ovkErr, nil
 	}
 
@@ -100,12 +100,12 @@ func (authData *AuthData) GetRequests(extended, count, offset int) (*GetRequests
 		return nil, nil, err
 	}
 
-	ovkErr, isErr, err := isError(body)
+	ovkErr, err := isError(body)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	if isErr {
+	if ovkErr != nil {
 		return nil, ovkErr, nil
 	}
 
@@ -127,12 +127,12 @@ func (authData *AuthData) AreFriends(userIds string) (*AreFriends, *ErrorReturne
 		return nil, nil, err
 	}
 
-	ovkErr, isErr, err := isError(body)
+	ovkErr, err := isError(body)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	if isErr {
+	if ovkErr != nil {
 		return nil, ovkErr, nil
 	}
 

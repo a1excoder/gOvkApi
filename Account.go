@@ -11,12 +11,12 @@ func (authData *AuthData) GetProfileInfo() (*ProfileInfo, *ErrorReturned, error)
 		return nil, nil, err
 	}
 
-	ovkErr, isErr, err := isError(body)
+	ovkErr, err := isError(body)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	if isErr {
+	if ovkErr != nil {
 		return nil, ovkErr, nil
 	}
 
@@ -37,12 +37,12 @@ func (authData *AuthData) GetInfo() (*Info, *ErrorReturned, error) {
 		return nil, nil, err
 	}
 
-	ovkErr, isErr, err := isError(body)
+	ovkErr, err := isError(body)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	if isErr {
+	if ovkErr != nil {
 		return nil, ovkErr, nil
 	}
 
@@ -63,12 +63,12 @@ func (authData *AuthData) GetCounters() (*Counters, *ErrorReturned, error) {
 		return nil, nil, err
 	}
 
-	ovkErr, isErr, err := isError(body)
+	ovkErr, err := isError(body)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	if isErr {
+	if ovkErr != nil {
 		return nil, ovkErr, nil
 	}
 

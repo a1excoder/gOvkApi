@@ -53,12 +53,12 @@ func (authData *AuthData) GetApiToken(username, password, twoFactorCode string, 
 		return nil, err
 	}
 
-	ovkErr, isErr, err := isError(body)
+	ovkErr, err := isError(body)
 	if err != nil {
 		return nil, err
 	}
 
-	if isErr {
+	if ovkErr != nil {
 		return ovkErr, nil
 	}
 
