@@ -2,7 +2,7 @@ package gOvkApi
 
 import "encoding/json"
 
-func isError(data []byte) (*ErrorReturned, error) {
+func isError(data []byte) (*ovkError, error) {
 	errPtr, err := unmarshalError(data)
 	if err != nil {
 		return nil, err
@@ -23,8 +23,8 @@ func unmarshalAny[T any](bytes []byte) (*T, error) {
 	return out, nil
 }
 
-func unmarshalError(data []byte) (*ErrorReturned, error) {
-	return unmarshalAny[ErrorReturned](data)
+func unmarshalError(data []byte) (*ovkError, error) {
+	return unmarshalAny[ovkError](data)
 }
 
 func unmarshalSuccessToken(data []byte) (*SuccessToken, error) {
