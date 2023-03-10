@@ -6,7 +6,7 @@ func (authData *AuthData) GetProfileInfo() (*ProfileInfo, *ErrorReturned, error)
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 
-	body, _, err := makeRequest(authData.Instance+"/method/Account.getProfileInfo", params, MethodGet)
+	body, _, err := makeRequest(authData.Instance+"/method/Account.getProfileInfo", params, methodGet)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -32,7 +32,7 @@ func (authData *AuthData) GetInfo() (*Info, *ErrorReturned, error) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 
-	body, _, err := makeRequest(authData.Instance+"/method/Account.getInfo", params, MethodGet)
+	body, _, err := makeRequest(authData.Instance+"/method/Account.getInfo", params, methodGet)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -58,7 +58,7 @@ func (authData *AuthData) GetCounters() (*Counters, *ErrorReturned, error) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 
-	body, _, err := makeRequest(authData.Instance+"/method/Account.getCounters", params, MethodGet)
+	body, _, err := makeRequest(authData.Instance+"/method/Account.getCounters", params, methodGet)
 	if err != nil {
 		return nil, nil, err
 	}

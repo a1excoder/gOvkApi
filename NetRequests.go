@@ -7,8 +7,8 @@ import (
 )
 
 const (
-	MethodPost = 1
-	MethodGet  = 2
+	methodPost = 1
+	methodGet  = 2
 )
 
 func makeRequest(url string, params url.Values, method int) ([]byte, int, error) {
@@ -16,10 +16,10 @@ func makeRequest(url string, params url.Values, method int) ([]byte, int, error)
 	var err error
 
 	switch method {
-	case MethodPost:
+	case methodPost:
 		response, err = http.PostForm(url, params)
 		break
-	case MethodGet:
+	case methodGet:
 		response, err = http.Get(url + "?" + params.Encode())
 		break
 	default:
@@ -48,7 +48,7 @@ func (authData *AuthData) GetApiToken(username, password, twoFactorCode string, 
 		params.Add("code", twoFactorCode)
 	}
 
-	body, _, err := makeRequest(authData.Instance+"/token", params, MethodPost)
+	body, _, err := makeRequest(authData.Instance+"/token", params, methodPost)
 	if err != nil {
 		return nil, err
 	}

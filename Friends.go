@@ -12,7 +12,7 @@ func (authData *AuthData) GetFriends(userId, count, offset int) (*GetFriends, *E
 	params.Add("count", strconv.Itoa(count))
 	params.Add("offset", strconv.Itoa(offset))
 
-	body, _, err := makeRequest(authData.Instance+"/method/Friends.get", params, MethodGet)
+	body, _, err := makeRequest(authData.Instance+"/method/Friends.get", params, methodGet)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -39,7 +39,7 @@ func (authData *AuthData) AddFriend(userId int) (*ResponseFriends, *ErrorReturne
 	params.Add("access_token", authData.Token.AccessToken)
 	params.Add("user_id", strconv.Itoa(userId))
 
-	body, _, err := makeRequest(authData.Instance+"/method/Friends.add", params, MethodGet)
+	body, _, err := makeRequest(authData.Instance+"/method/Friends.add", params, methodGet)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -66,7 +66,7 @@ func (authData *AuthData) DeleteFriend(userId int) (*ResponseFriends, *ErrorRetu
 	params.Add("access_token", authData.Token.AccessToken)
 	params.Add("user_id", strconv.Itoa(userId))
 
-	body, _, err := makeRequest(authData.Instance+"/method/Friends.delete", params, MethodGet)
+	body, _, err := makeRequest(authData.Instance+"/method/Friends.delete", params, methodGet)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -95,7 +95,7 @@ func (authData *AuthData) GetRequests(extended, count, offset int) (*GetRequests
 	params.Add("count", strconv.Itoa(count))
 	params.Add("offset", strconv.Itoa(offset))
 
-	body, _, err := makeRequest(authData.Instance+"/method/Friends.getRequests", params, MethodGet)
+	body, _, err := makeRequest(authData.Instance+"/method/Friends.getRequests", params, methodGet)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -122,7 +122,7 @@ func (authData *AuthData) AreFriends(userIds string) (*AreFriends, *ErrorReturne
 	params.Add("access_token", authData.Token.AccessToken)
 	params.Add("user_ids", userIds)
 
-	body, _, err := makeRequest(authData.Instance+"/method/Friends.areFriends", params, MethodGet)
+	body, _, err := makeRequest(authData.Instance+"/method/Friends.areFriends", params, methodGet)
 	if err != nil {
 		return nil, nil, err
 	}
