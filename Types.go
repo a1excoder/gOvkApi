@@ -11,10 +11,15 @@ type SuccessToken struct {
 	UserId      int    `json:"user_id"`
 }
 
-type ErrorReturned struct {
+type ovkError struct {
 	ErrorCode int    `json:"error_code"`
 	ErrorMsg  string `json:"error_msg"`
 	//	RequestParams []RequestParams[any] `json:"request_params"`
+}
+
+type ErrorReturned struct {
+	OvkError *ovkError
+	Err      error
 }
 
 //type RequestParams[T any] struct {
