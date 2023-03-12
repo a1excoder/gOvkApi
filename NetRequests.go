@@ -38,7 +38,7 @@ func makeRequest(url string, params url.Values, method int) ([]byte, int, error)
 	return bodyData, response.StatusCode, nil
 }
 
-func (authData *AuthData) GetApiToken(username, password, twoFactorCode string, code bool) (*ErrorReturned, error) {
+func (authData *AuthData) GetApiToken(username, password, twoFactorCode string, code bool) ErrorReturned {
 	params := url.Values{}
 	params.Add("username", username)
 	params.Add("password", password)
@@ -48,24 +48,24 @@ func (authData *AuthData) GetApiToken(username, password, twoFactorCode string, 
 		params.Add("code", twoFactorCode)
 	}
 
+	errRet := ErrorReturned{}
+
 	body, _, err := makeRequest(authData.Instance+"/token", params, methodPost)
 	if err != nil {
-		return nil, err
+		errRet.Err = err
+		return errRet
 	}
 
-	ovkErr, err := isError(body)
-	if err != nil {
-		return nil, err
-	}
-
-	if ovkErr != nil {
-		return ovkErr, nil
+	errRet.OvkError, errRet.Err = isError(body)
+	if errRet.Err != nil || errRet.OvkError != nil {
+		return errRet
 	}
 
 	authData.Token, err = unmarshalSuccessToken(body)
 	if err != nil {
-		return nil, err
+		errRet.Err = err
+		return errRet
 	}
 
-	return nil, nil
+	return errRet
 }
