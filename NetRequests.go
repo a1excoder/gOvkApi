@@ -35,6 +35,7 @@ func makeRequest(url string, params url.Values, method int) ([]byte, int, error)
 		return nil, 0, err
 	}
 
+	_ = response.Body.Close()
 	return bodyData, response.StatusCode, nil
 }
 
