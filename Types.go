@@ -118,15 +118,36 @@ type AreFriends struct {
 	areFriendsResponse `json:"response"`
 }
 
+type groupData struct {
+	Id              int     `json:"id"`
+	Name            string  `json:"name"`
+	ScreenName      *string `json:"screen_name"`
+	IsClosed        bool    `json:"is_closed"`
+	CanAccessClosed bool    `json:"can_access_closed"`
+	Type            string  `json:"type"`
+	Verified        *int    `json:"verified"`
+	HasPhoto        *int    `json:"has_photo"`
+	PhotoMaxOrig    *string `json:"photo_max_orig"`
+	PhotoMax        *string `json:"photo_max"`
+	Photo50         *string `json:"photo_50"`
+	Photo100        *string `json:"photo_100"`
+	Photo200        *string `json:"photo_200"`
+	Photo200Orig    *string `json:"photo_200_orig"`
+	Photo400Orig    *string `json:"photo_400_orig"`
+	MembersCount    *int    `json:"members_count"`
+	Site            *string `json:"site"`
+	Description     *string `json:"description"`
+	Contacts        *[]struct {
+		UserId      int    `json:"user_id"`
+		Description string `json:"desc"`
+	} `json:"contacts"`
+	CanPost  *bool `json:"can_post"`
+	IsMember *bool `json:"is_member"`
+}
+
 type getGroupsResponse struct {
-	Count int `json:"count"`
-	Items []struct {
-		Id              int     `json:"id"`
-		Name            string  `json:"name"`
-		ScreenName      *string `json:"screen_name"`
-		IsClosed        bool    `json:"is_closed"`
-		CanAccessClosed bool    `json:"can_access_closed"`
-	} `json:"items"`
+	Count int         `json:"count"`
+	Items []groupData `json:"items"`
 }
 
 type GetGroups struct {

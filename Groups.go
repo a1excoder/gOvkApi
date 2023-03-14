@@ -5,12 +5,13 @@ import (
 	"strconv"
 )
 
-func (authData *AuthData) GetGroups(userId, count, offset int) (*GetGroups, ErrorReturned) {
+func (authData *AuthData) GetGroups(userId, count, offset int, fields string) (*GetGroups, ErrorReturned) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
 	params.Add("user_id", strconv.Itoa(userId))
 	params.Add("count", strconv.Itoa(count))
 	params.Add("offset", strconv.Itoa(offset))
+	params.Add("fields", fields)
 
 	errRet := ErrorReturned{}
 
