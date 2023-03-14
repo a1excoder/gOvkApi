@@ -154,10 +154,6 @@ type GetGroups struct {
 	getGroupsResponse `json:"response"`
 }
 
-type getByIdResponse struct {
-	Response []groupData `json:"response"`
-}
-
 type GetById struct {
-	getByIdResponse
+	Groups []groupData `json:"response"`
 }
