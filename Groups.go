@@ -95,3 +95,30 @@ func (authData *AuthData) Search(query string, count, offset int) (*Search, Erro
 
 	return search, errRet
 }
+
+func (authData *AuthData) Join(groupId int) (*JoinLeave, ErrorReturned) {
+	params := url.Values{}
+	params.Add("access_token", authData.Token.AccessToken)
+	params.Add("group_id", strconv.Itoa(groupId))
+
+	errRet := ErrorReturned{}
+
+	body, _, err := makeRequest(authData.Instance+"/method/Groups.join", params, methodGet)
+	if err != nil {
+		errRet.Err = err
+		return nil, errRet
+	}
+
+	errRet.OvkError, errRet.Err = isError(body)
+	if errRet.Err != nil || errRet.OvkError != nil {
+		return nil, errRet
+	}
+
+	join, err := unmarshalAny[JoinLeave](body)
+	if err != nil {
+		errRet.Err = err
+		return nil, errRet
+	}
+
+	return join, errRet
+}
