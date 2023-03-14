@@ -161,3 +161,7 @@ type GetById struct {
 type Search struct {
 	Groups []groupData `json:"response"`
 }
+
+type JoinLeave struct {
+	Status int `json:"response"`
+}
