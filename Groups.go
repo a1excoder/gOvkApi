@@ -66,3 +66,32 @@ func (authData *AuthData) GetById(groupIds []int, count, offset int, fields stri
 
 	return getById, errRet
 }
+
+func (authData *AuthData) Search(query string, count, offset int) (*Search, ErrorReturned) {
+	params := url.Values{}
+	params.Add("access_token", authData.Token.AccessToken)
+	params.Add("q", query)
+	params.Add("count", strconv.Itoa(count))
+	params.Add("offset", strconv.Itoa(offset))
+
+	errRet := ErrorReturned{}
+
+	body, _, err := makeRequest(authData.Instance+"/method/Groups.search", params, methodGet)
+	if err != nil {
+		errRet.Err = err
+		return nil, errRet
+	}
+
+	errRet.OvkError, errRet.Err = isError(body)
+	if errRet.Err != nil || errRet.OvkError != nil {
+		return nil, errRet
+	}
+
+	search, err := unmarshalAny[Search](body)
+	if err != nil {
+		errRet.Err = err
+		return nil, errRet
+	}
+
+	return search, errRet
+}
