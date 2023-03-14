@@ -157,3 +157,7 @@ type GetGroups struct {
 type GetById struct {
 	Groups []groupData `json:"response"`
 }
+
+type Search struct {
+	Groups []groupData `json:"response"`
+}
