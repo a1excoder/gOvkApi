@@ -117,3 +117,18 @@ type areFriendsResponse []struct {
 type AreFriends struct {
 	areFriendsResponse `json:"response"`
 }
+
+type getGroupsResponse struct {
+	Count int `json:"count"`
+	Items []struct {
+		Id              int     `json:"id"`
+		Name            string  `json:"name"`
+		ScreenName      *string `json:"screen_name"`
+		IsClosed        bool    `json:"is_closed"`
+		CanAccessClosed bool    `json:"can_access_closed"`
+	} `json:"items"`
+}
+
+type GetGroups struct {
+	getGroupsResponse `json:"response"`
+}
