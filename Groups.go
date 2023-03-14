@@ -1,10 +1,8 @@
 package gOvkApi
 
 import (
-	"fmt"
 	"net/url"
 	"strconv"
-	"strings"
 )
 
 func (authData *AuthData) GetGroups(userId, count, offset int, fields string) (*GetGroups, ErrorReturned) {
@@ -37,10 +35,12 @@ func (authData *AuthData) GetGroups(userId, count, offset int, fields string) (*
 	return getGroups, errRet
 }
 
-func (authData *AuthData) GetById(groupIds []int, count, offset int, fields string) (*GetById, ErrorReturned) {
+func (authData *AuthData) GetById(groupIds string, count, offset int, fields string) (*GetById, ErrorReturned) {
 	params := url.Values{}
 	params.Add("access_token", authData.Token.AccessToken)
-	params.Add("group_ids", strings.Trim(strings.Join(strings.Fields(fmt.Sprint(groupIds)), ","), "[]"))
+	// groupIds []int
+	// params.Add("group_ids", strings.Trim(strings.Join(strings.Fields(fmt.Sprint(groupIds)), ","), "[]"))
+	params.Add("group_ids", groupIds)
 	params.Add("count", strconv.Itoa(count))
 	params.Add("offset", strconv.Itoa(offset))
 	params.Add("fields", fields)
