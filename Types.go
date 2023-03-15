@@ -159,7 +159,7 @@ type GetById struct {
 }
 
 type Search struct {
-	Groups []groupData `json:"response"`
+	getGroupsResponse `json:"response"`
 }
 
 type JoinLeave struct {
