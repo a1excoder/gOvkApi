@@ -21,13 +21,9 @@ import (
 func main() {
 	auth := gOvkApi.GetAuthData("http://openvk.co")
 
-	errOvk, err := auth.GetApiToken("a1excoder@openvk.uk", "12345678", "", false)
-	if err != nil {
+	errOvk := auth.GetApiToken("a1excoder@openvk.uk", "12345678", "", false)
+	if _, err := errOvk.GetError(); err != nil {
 		log.Fatalln(err.Error())
-	}
-
-	if errOvk != nil {
-		log.Fatalln(errOvk.ErrorMsg)
 	}
 
 	profile, errOvk, err := auth.GetProfileInfo()
