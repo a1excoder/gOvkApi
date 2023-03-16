@@ -27,6 +27,10 @@ type ErrorReturned struct {
 //	Value T      `json:"value"`
 //}
 
+//
+// Account
+//
+
 type profileInfoResponse struct {
 	FirstName              string `json:"first_name"`
 	Id                     int    `json:"id"`
@@ -71,6 +75,10 @@ type countersResponse struct {
 type Counters struct {
 	countersResponse `json:"response"`
 }
+
+//
+// Friends
+//
 
 type getFriendsResponse struct {
 	Count int `json:"count"`
@@ -117,6 +125,10 @@ type areFriendsResponse []struct {
 type AreFriends struct {
 	areFriendsResponse `json:"response"`
 }
+
+//
+// Groups
+//
 
 type groupData struct {
 	Id              int     `json:"id"`
