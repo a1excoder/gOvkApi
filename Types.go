@@ -76,6 +76,10 @@ type Counters struct {
 	countersResponse `json:"response"`
 }
 
+type SetOnline struct {
+	Response int `json:"response"`
+}
+
 //
 // Friends
 //
