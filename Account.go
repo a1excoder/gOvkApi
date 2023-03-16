@@ -79,3 +79,29 @@ func (authData *AuthData) GetCounters() (*Counters, ErrorReturned) {
 
 	return counters, errRet
 }
+
+func (authData *AuthData) SetOnline() (*SetOnline, ErrorReturned) {
+	params := url.Values{}
+	params.Add("access_token", authData.Token.AccessToken)
+
+	errRet := ErrorReturned{}
+
+	body, _, err := makeRequest(authData.Instance+"/method/Account.setOnline", params, methodGet)
+	if err != nil {
+		errRet.Err = err
+		return nil, errRet
+	}
+
+	errRet.OvkError, errRet.Err = isError(body)
+	if errRet.Err != nil || errRet.OvkError != nil {
+		return nil, errRet
+	}
+
+	setOnline, err := unmarshalAny[SetOnline](body)
+	if err != nil {
+		errRet.Err = err
+		return nil, errRet
+	}
+
+	return setOnline, errRet
+}
